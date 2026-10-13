@@ -25,7 +25,7 @@ import math
 from dataclasses import dataclass
 from typing import Any
 
-from gameday_lab.sim.contracts import (  # noqa: F401
+from gameday_lab.sim.contracts import (
     Action,
     Answer,
     Attempt,

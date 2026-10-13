@@ -48,12 +48,6 @@ class WindowSums:
     43,200 minutes x 6 windows: recomputing every window with sum() is far too slow.
     """
 
-class WindowSums:
-    """O(1) sum of any window, via prefix sums. Build once, query many times.
-
-    43,200 minutes x 6 windows: recomputing every window with sum() is far too slow.
-    """
-
     def __init__(self, values: list[int]) -> None:
         """Build the prefix-sum list (prefix[0] = 0)."""
         self.prefix = [0] * (len(values) + 1)
