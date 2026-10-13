@@ -1,6 +1,6 @@
 # Lab 25B — Report
 
-**Họ tên / nhóm:** Nguyễn Gia Khánh - 2A202602851  **Commit:** 4967c46  **Điểm tự động (`make grade`):** 84.0 / 88 (Public automated: 84/84, full 88 gồm 4đ ẩn instructor test)
+**Họ tên / nhóm:** Nguyễn Gia Khánh - 2A202602851  **Commit:** c8ded89  **Điểm tự động (`make grade`):** 84.0 / 88 (Public automated: 84/84, full 88 gồm 4đ ẩn instructor test)
 
 > Mọi nhận định phải có số. Dán số từ `reports/gameday/*.json`, `reports/workflows.json`, `reports/slo.json`.
 
