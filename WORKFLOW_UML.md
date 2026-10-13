@@ -1,3 +1,62 @@
+---
+preview:
+  theme: atom-dark.css
+---
+
+<style>
+  /* Markdown Preview Enhanced Dark Theme Overrides */
+  body, .markdown-preview, .markdown-preview.markdown-preview, .mpe {
+    background-color: #12131a !important;
+    color: #e2e8f0 !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    color: #60a5fa !important;
+    border-bottom: 1px solid #2d3748 !important;
+  }
+  hr {
+    background-color: #2d3748 !important;
+    border: none !important;
+    height: 1px !important;
+  }
+  a {
+    color: #38bdf8 !important;
+  }
+  pre, code {
+    background-color: #1a1b26 !important;
+    color: #f472b6 !important;
+    border-color: #2d3748 !important;
+  }
+  .mermaid {
+    background-color: #1a1b26 !important;
+    border: 1px solid #2d3748 !important;
+    border-radius: 8px !important;
+    padding: 16px !important;
+  }
+  details {
+    background-color: #1a1b26 !important;
+    border: 1px solid #2d3748 !important;
+    border-radius: 6px !important;
+    padding: 8px 12px !important;
+    margin: 12px 0 !important;
+  }
+  summary {
+    color: #94a3b8 !important;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  table th {
+    background-color: #1e293b !important;
+    color: #e2e8f0 !important;
+  }
+  table td, table th {
+    border-color: #334155 !important;
+  }
+  table tr:nth-child(2n) {
+    background-color: #1a1b26 !important;
+  }
+</style>
+
 # Lab 25B — Sơ đồ Kiến trúc & Luồng Xử lý Hệ thống (UML Workflows)
 
 Tài liệu này đặc tả toàn bộ các luồng nghiệp vụ (workflows), kiến trúc phân lớp, máy trạng thái (state machines), và cơ chế xử lý lỗi bền bỉ trong **Lab 25B: Circuit Breakers, Caching, Reliability & SRE Error Budgets**.
@@ -15,6 +74,7 @@ Mỗi quy trình được mô hình hóa bằng chuẩn **Mermaid UML** (hiển 
 5. [Cơ chế Phục hồi khi Gặp Crash & Idempotency (Activity Diagram)](#5-cơ-chế-phục-hồi-khi-gặp-crash--idempotency)
 6. [Công cụ Cảnh báo SRE Multi-Window Multi-Burn-Rate (Sequence Diagram)](#6-công-cụ-cảnh-báo-sre-multi-window-multi-burn-rate)
 7. [Sơ đồ Lớp Toàn diện (Class Diagram)](#7-sơ-đồ-lớp-toàn-diện)
+8. [Hướng dẫn Thiết lập Nền Tối (Dark Mode) trong Markdown Preview Enhanced](#8-hướng-dẫn-thiết-lập-nền-tối-dark-mode-trong-markdown-preview-enhanced)
 
 ---
 
@@ -24,6 +84,7 @@ Sơ đồ thể hiện sự phối hợp giữa các tầng: **Client Layer**, *
 
 ### Mermaid Diagram
 ```mermaid
+%%{init: {'theme': 'dark'}}%%
 graph TD
     User([Người dùng / Agent Task]) --> CachedClient[CachedClient\n(Semantic Cache)]
     
@@ -76,6 +137,9 @@ graph TD
 
 ```plantuml
 @startuml
+skinparam backgroundColor #12131a
+skinparam defaultFontColor #e2e8f0
+skinparam defaultFontName "Segoe UI"
 skinparam componentStyle rectangle
 
 package "Caching Layer (Part G)" {
@@ -134,6 +198,7 @@ Sơ đồ trình tự biểu diễn chi tiết cách một lệnh gọi LLM đư
 
 ### Mermaid Diagram
 ```mermaid
+%%{init: {'theme': 'dark'}}%%
 sequenceDiagram
     autonumber
     actor App as Ứng dụng / Agent
@@ -217,6 +282,9 @@ sequenceDiagram
 
 ```plantuml
 @startuml
+skinparam backgroundColor #12131a
+skinparam defaultFontColor #e2e8f0
+skinparam defaultFontName "Segoe UI"
 autonumber
 actor Caller
 participant CachedClient
@@ -273,6 +341,7 @@ Trạng thái và logic chuyển đổi của `SlidingWindowBreaker` gồm 3 tr�
 
 ### Mermaid Diagram
 ```mermaid
+%%{init: {'theme': 'dark'}}%%
 stateDiagram-v2
     [*] --> CLOSED : Khởi tạo với window_size=10, min_calls=5
 
@@ -311,6 +380,10 @@ stateDiagram-v2
 
 ```plantuml
 @startuml
+skinparam backgroundColor #12131a
+skinparam defaultFontColor #e2e8f0
+skinparam defaultFontName "Segoe UI"
+
 [*] --> CLOSED : Khởi tạo
 
 state CLOSED {
@@ -344,6 +417,7 @@ Quy trình xử lý hoàn tiền 6 bước bền vững (`RefundRequest`) có ch
 
 ### Mermaid Diagram
 ```mermaid
+%%{init: {'theme': 'dark'}}%%
 sequenceDiagram
     autonumber
     actor Caller as Hệ thống gọi Workflow
@@ -366,7 +440,7 @@ sequenceDiagram
     end
 
     %% Step 1: Lookup Policy
-    rect rgb(240, 248, 255)
+    rect rgb(23, 32, 54)
     Note over Exec, Policy: BƯỚC 1: Tra cứu chính sách (Pure Read-only)
     Exec->>Store: get(session_id + ":step_lookup_policy")
     alt Đã có checkpoint
@@ -379,7 +453,7 @@ sequenceDiagram
     end
 
     %% Step 2: Call LLM Judge
-    rect rgb(240, 248, 255)
+    rect rgb(23, 32, 54)
     Note over Exec, LLM: BƯỚC 2: Đánh giá hợp lệ qua LLM (Pure Read-only)
     Exec->>Store: get(session_id + ":step_call_llm_judge")
     alt Đã có checkpoint
@@ -392,7 +466,7 @@ sequenceDiagram
     end
 
     %% Step 3: Ledger Debit
-    rect rgb(255, 250, 240)
+    rect rgb(42, 33, 24)
     Note over Exec, Ledger: BƯỚC 3: Ghi nợ sổ cái tài khoản (Side-effect)
     Exec->>Store: get(session_id + ":step_ledger_debit")
     alt Đã có checkpoint
@@ -406,7 +480,7 @@ sequenceDiagram
     end
 
     %% Step 4: Gateway Refund
-    rect rgb(255, 250, 240)
+    rect rgb(42, 33, 24)
     Note over Exec, Gateway: BƯỚC 4: Hoàn tiền qua Cổng thanh toán (Side-effect)
     Exec->>Store: get(session_id + ":step_gateway_refund")
     alt Đã có checkpoint
@@ -420,7 +494,7 @@ sequenceDiagram
     end
 
     %% Step 5: Send Email
-    rect rgb(255, 250, 240)
+    rect rgb(42, 33, 24)
     Note over Exec, Email: BƯỚC 5: Gửi thông báo cho khách hàng (Side-effect)
     Exec->>Store: get(session_id + ":step_send_email")
     alt Đã có checkpoint
@@ -434,7 +508,7 @@ sequenceDiagram
     end
 
     %% Step 6: Record Audit
-    rect rgb(255, 250, 240)
+    rect rgb(42, 33, 24)
     Note over Exec, Audit: BƯỚC 6: Ghi nhật ký kiểm toán (Side-effect)
     Exec->>Store: get(session_id + ":step_record_audit")
     alt Đã có checkpoint
@@ -460,6 +534,7 @@ Sơ đồ khối thể hiện cách `execute_step` xử lý khi tiến trình b�
 
 ### Mermaid Diagram
 ```mermaid
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     Start([Bắt đầu thực hiện Bước i]) --> CheckStore{DurableStore đã lưu\ncheckpoint bước i chưa?}
     
@@ -492,6 +567,10 @@ flowchart TD
 
 ```plantuml
 @startuml
+skinparam backgroundColor #12131a
+skinparam defaultFontColor #e2e8f0
+skinparam defaultFontName "Segoe UI"
+
 start
 :Bắt đầu thực hiện Step;
 if (DurableStore đã có checkpoint cho step?) then (yes)
@@ -520,6 +599,7 @@ Quy trình đánh giá chuỗi thời gian 43.200 phút giả lập sử dụng 
 
 ### Mermaid Diagram
 ```mermaid
+%%{init: {'theme': 'dark'}}%%
 sequenceDiagram
     autonumber
     participant Engine as Test Runner / SRE Engine
@@ -579,6 +659,7 @@ Biểu đồ lớp thể hiện toàn bộ các thực thể, thuộc tính và 
 
 ### Mermaid Diagram
 ```mermaid
+%%{init: {'theme': 'dark'}}%%
 classDiagram
     class BaseClient {
         <<abstract>>
@@ -690,6 +771,10 @@ classDiagram
 
 ```plantuml
 @startuml
+skinparam backgroundColor #12131a
+skinparam defaultFontColor #e2e8f0
+skinparam defaultFontName "Segoe UI"
+
 interface BaseClient {
     +send(call, now): Action
     +on_success(call, tag, latency, now): Action
@@ -762,10 +847,21 @@ MultiWindowAlerter o-- WindowSums
 
 ---
 
-## 8. Hướng dẫn Sử dụng & Trực quan hóa
+## 8. Hướng dẫn Thiết lập Nền Tối (Dark Mode) trong Markdown Preview Enhanced
 
-1. **Xem trực tiếp trong IDE / VS Code:**
-   - Mở file `WORKFLOW_UML.md`.
-   - Nhấn tổ hợp phím `Ctrl + Shift + V` (hoặc click icon Preview ở góc phải trên) để mở Markdown Preview. Toàn bộ các diagram Mermaid sẽ tự động render dạng đồ họa tương tác.
-2. **Xem dạng PlantUML:**
-   - Nếu máy tính có cài extension PlantUML trong VS Code, mở khối code trong phần `<details>` tương ứng và nhấn `Alt + D` để render sơ đồ PlantUML.
+Extension **Markdown Preview Enhanced (MPE)** mặc định sử dụng theme trắng (`github-light.css`). Bạn có thể đổi sang nền tối theo 2 cách cực kỳ nhanh chóng:
+
+### Cách 1: Đổi trực tiếp trên cửa sổ xem trước (Khuyên dùng)
+1. Nhấp **chuột phải** vào bất kỳ vị trí nào trên tab màn hình xem trước **Markdown Preview Enhanced**.
+2. Di chuột đến mục **Preview Theme**.
+3. Chọn một trong các theme tối dịu mắt:
+   - **`atom-dark.css`** (Màu tối xanh xám đậm hiện đại)
+   - **`one-dark.css`** (Màu One Dark kinh điển)
+   - **`dracula.css`** hoặc **`monokai.css`**
+
+### Cách 2: Thiết lập vĩnh viễn trong Cài đặt VS Code
+1. Nhấn `Ctrl + ,` để mở bảng **Settings**.
+2. Tìm kiếm: `markdown-preview-enhanced.previewTheme`.
+3. Nhập giá trị: `atom-dark.css` hoặc `one-dark.css`.
+4. Tìm kiếm tiếp: `markdown-preview-enhanced.mermaidTheme`.
+5. Chọn giá trị: `dark`.
