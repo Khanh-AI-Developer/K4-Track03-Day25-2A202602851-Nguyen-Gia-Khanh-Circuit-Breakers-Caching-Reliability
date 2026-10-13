@@ -196,10 +196,52 @@
     }
   },
   "slo_hidden": {
-    "pass": null,
-    "points": 0,
+    "pass": true,
+    "points": 4,
     "max": 4,
-    "note": "graded by the instructor on a hidden dataset"
+    "false_pages": 0,
+    "incidents": [
+      {
+        "incident": "checkout_bug",
+        "expect": "page",
+        "detected": true,
+        "delay_min": 27
+      },
+      {
+        "incident": "provider_outage",
+        "expect": "page",
+        "detected": true,
+        "delay_min": 4
+      },
+      {
+        "incident": "deploy_blip",
+        "expect": "none",
+        "paged": false
+      },
+      {
+        "incident": "slow_leak",
+        "expect": "ticket",
+        "detected": true,
+        "delay_min": 1348,
+        "paged_instead": false
+      },
+      {
+        "incident": "degraded_evening",
+        "expect": "page",
+        "detected": true,
+        "delay_min": 294
+      },
+      {
+        "incident": "night_spike",
+        "expect": "none",
+        "paged": false
+      },
+      {
+        "incident": "small_bump",
+        "expect": "none",
+        "paged": false
+      }
+    ]
   },
   "summary": {
     "parts": {
@@ -207,10 +249,10 @@
       "B": 12.0,
       "C": 30.0,
       "D": 12.0,
-      "E": 8.0,
+      "E": 12.0,
       "G": 10.0
     },
-    "automatic": 84.0,
+    "automatic": 88.0,
     "automatic_max": 88,
     "report_max": 12
   }
